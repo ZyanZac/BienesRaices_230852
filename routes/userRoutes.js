@@ -2,7 +2,7 @@ import express from 'express';
 
 const router=express.Router();
 
-import {formularioLogin, formularioRegister, formularioPasswordRecovery} from '../controllers/userController.js';
+import {formularioLogin, formularioRegister, formularioPasswordRecovery, registrar} from '../controllers/userController.js';
 
 
 //GET - Se utiliza para la lectura de datos e información del servidor al cliente.
@@ -59,8 +59,12 @@ router.delete("/deleteUser/:email", function(request, response){
 
 
 router.get("/login", formularioLogin) //Middelware, quien guía, asigna la tarea a alguien más
+
 router.get("/createAccount", formularioRegister)
+router.post("/createAccount", registrar)
+
 router.get("/passwordRecovery", formularioPasswordRecovery)
+
 
 
 

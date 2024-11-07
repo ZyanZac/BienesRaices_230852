@@ -3,6 +3,7 @@
 import express from 'express';
 import generalRoutes from './routes/generalRoutes.js';
 import userRoutes from './routes/userRoutes.js';
+import db from './config/db.js';
 
 //const express=require('express'); //Declaración que permitirá entrar al protocolo http y leer páginas. Importar la librería para crear un servidor web
 //Instanciar nuestra aplicación web
@@ -20,6 +21,15 @@ const port=3000;
 app.listen(port, ()=>{
     console.log(`La aplicación ha iniciado en el puerto: ${port}`); //Se levanta el servidor
 });
+
+//Conexión a la base de datos
+try{
+    await db.authenticate();
+    console.log('Conexión Correcta a la Base de Datos');
+} catch(error) {
+    console.log(error);
+}
+
 
 /*app.get("/", function(req, res){
     res.send("Hola Mundo desde Node, a través del Navegador.");
